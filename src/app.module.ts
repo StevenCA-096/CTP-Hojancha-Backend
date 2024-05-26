@@ -27,11 +27,11 @@ import { join } from 'path';
   TypeOrmModule.forRootAsync({
     useFactory: async () => ({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'pruebactp',
+      host: 'mysql-3f72e0f7-scordero097-6bcc.g.aivencloud.com',
+      port: 22537,
+      username: 'avnadmin',
+      password: 'AVNS_6EdUMv4PKlmvTe9e_CL',
+      database: 'defaultdb',
       entities: [join(__dirname, '**', '*.entity.js')],
       synchronize: true, 
       retryAttempts: 3,
