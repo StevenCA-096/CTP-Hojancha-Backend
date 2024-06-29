@@ -1,7 +1,7 @@
 import { Appointment } from 'src/appointment/entities/appointment.entity';
 import { Section } from 'src/section/entities/section.entity';
 import { Student } from 'src/student/entities/student.entity';
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn, JoinColumn  } from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn, JoinColumn, ManyToOne  } from 'typeorm';
 
 @Entity()
 export class StudentEnrollment {
@@ -16,8 +16,7 @@ export class StudentEnrollment {
     @JoinColumn()
     student: Student;
 
-    @OneToOne(() => Section, {eager: true})
-    @JoinColumn()
+    @ManyToOne(() => Section, (section) => section.enrollment,{eager: true})
     section: Section;
 
     @OneToOne(() => Appointment, {eager: true})

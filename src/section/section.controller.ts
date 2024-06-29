@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { SectionService } from './section.service';
 import { CreateSectionDto } from './dto/create-section.dto';
 import { UpdateSectionDto } from './dto/update-section.dto';
@@ -30,5 +30,14 @@ export class SectionController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.sectionService.remove(+id);
+  }
+  
+  @Patch('addSectionQuota/:id')
+  addQuota(@Param('id' , ParseIntPipe) id:number){
+    return this.sectionService.addQuota(id);
+  }
+  @Patch('reduceSectionQuota/:id')
+  reduceQuota(@Param('id' , ParseIntPipe) id:number){
+    return this.sectionService.reduceQuota(id);
   }
 }

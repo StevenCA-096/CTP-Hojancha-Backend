@@ -1,7 +1,7 @@
 import { Enrollment } from 'src/enrollment/entities/enrollment.entity';
 import { SectionArea } from 'src/section_area/entities/section_area.entity';
 import { StudentEnrollment } from 'src/student_enrollment/entities/student_enrollment.entity';
-import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn, JoinColumn, ManyToOne, JoinTable } from 'typeorm';
 
 @Entity()
 export class Section {
@@ -24,9 +24,10 @@ export class Section {
     @ManyToOne(() => Enrollment, enrollment => enrollment.sections)
     enrollment: Enrollment;
 
-    @OneToOne(() => StudentEnrollment, studentEnrollment => studentEnrollment.section)
+    @OneToMany(() => StudentEnrollment, studentEnrollment => studentEnrollment.section)
     studentEnrollment: StudentEnrollment;
 
+    @JoinTable()
     @OneToMany(() => SectionArea, sectionarea => sectionarea.section, { eager: true })
     sectionareas: SectionArea[];
 }
